@@ -32,7 +32,7 @@ Don’t know where to start? Check out some of our [presets](https://babeljs.io
 
    注: 在入口文件的最顶层导入该模块，或者写在bundler配置中。
 
-3. ### JSX and Flow(已经使用)
+3. ### JSX and Flow(已经用到)
 
    Babel 可以转换 JSX 语法，并且去掉类型注释。查看 [React preset](https://babeljs.io/docs/plugins/preset-react/)。可以和 [babel-sublime](https://github.com/babel/babel-sublime) ,(就是一个可以让包含JSX语法高亮的插件)。
 
@@ -49,5 +49,78 @@ Don’t know where to start? Check out some of our [presets](https://babeljs.io
    # [npm 上由社区维护的可用的`presets`](https://www.npmjs.com/search?q=babel-preset)
 
    ​
+
+   ## 参考资料;
+
+   1. [Babel入门教程](http://www.ruanyifeng.com/blog/2016/01/babel.html)
+
+      * 配置文件` .babelrc`
+
+        Babel 的配置文件是`.babelrc`,存放在项目根目录下。使用 Babel 第一步就是配置这个文件。
+
+        ```javascript
+        {
+          "presets":[],
+          "plugins":[]
+        }
+        //presets 字段设定预转码规则
+        ```
+
+        官方提供以下的规则集，可以根据需要安装。
+
+        ```javascript
+        //es2015转码规则
+        $ npm i -D babel-preset-es2015
+
+        //react转码规则
+        $ npm i -D babel-preset-react
+
+        //es7不同阶段语法提案的转码规则(共4个阶段，选装一个就好啦)
+        $ npm i -D babel-preset-stage-0
+        $ npm i -D babel-preset-stage-1
+        $ npm i -D babel-preset-stage-2
+        $ npm i -D babel-preset-stage-3
+        ```
+
+        然后将这些规则加入`.babelrc`
+
+        ```javascript
+        {
+          "presets":[
+            "es2015",
+            "react",
+            "stage-0"
+          ],
+          "plugins":[
+          
+          ]
+        }
+        ```
+
+
+
+注意事项:
+
+1. babel-core: 如果某些代码需要调用 Babel 的API进行转码，就要使用`babel-core`模块
+
+   `npm i -S babel-core`
+
+2. 与其他工具配合
+
+   许多工具需要Babel进行前置转码，举两个例子: ESLint和Mocha
+
+   [ESLint](http://eslint.org/)用于静态检查代码的语法和风格，安装命令如下:
+
+   ```javascript
+   npm i -D eslint babel-eslint
+   ```
+
+   [Mocha](http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)是一个测试框架，如果需要执行使用ES6语法的测试脚本，可以修改`package.json`的`scripts.test`。
+
+   ```javascript
+   "scripts": {
+     "test": "mocha --ui qunit --compilers js:babel-core/register"
+   }
+   ```
 
    ​
