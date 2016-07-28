@@ -1,0 +1,1 @@
+##[使用Redux动机](http://cn.redux.js.org/docs/introduction/Motivation.html)
